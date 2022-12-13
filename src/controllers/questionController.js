@@ -16,7 +16,7 @@ class QuestionController {
       const newQuestion = {
         question: req.body.question,
         subject: req.body.subject,
-        variantes: req.body.variantes,
+        variants: req.body.variants,
         class: req.body.class,
         answer: req.body.answer,
       };
@@ -45,7 +45,7 @@ class QuestionController {
         _id: req.body._id,
         question: req.body.question,
         subject: req.body.subject,
-        variantes: req.body.variantes,
+        variants: req.body.variants,
         class:req.body.class,
         answer: req.body.answer,
       };

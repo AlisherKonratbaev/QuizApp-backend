@@ -7,7 +7,7 @@ import questionRouter from "./routes/questionRouter.js";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 const apiUrl = process.env.API_URL || "";
 
 app.use(express.json());
