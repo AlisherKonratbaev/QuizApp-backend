@@ -10,7 +10,28 @@ class QuestionController {
       });
     }
   }
-
+  async getQuestions(req, res) {
+    try {
+      const questions = await questionService.getQuestions(
+        req.params.subject_id
+      );
+      res.json(questions);
+    } catch (error) {
+      res.status(500).json({
+        massege: "error",
+      });
+    }
+  }
+  async getCount(req, res) {
+    try {
+      const count = await questionService.getCount(req.params.subject_id);
+      res.json({count});
+    } catch (error) {
+      res.status(500).json({
+        massege: "error",
+      });
+    }
+  }
   async createQuestion(req, res) {
     try {
       const newQuestion = {
@@ -46,7 +67,7 @@ class QuestionController {
         question: req.body.question,
         subject: req.body.subject,
         variants: req.body.variants,
-        class:req.body.class,
+        class: req.body.class,
         answer: req.body.answer,
       };
       const updated = await questionService.update(question);
