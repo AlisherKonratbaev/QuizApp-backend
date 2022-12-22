@@ -10,7 +10,9 @@ class SubjecService {
     return subject;
   }
   async create(subject) {
-    const createdSubject = await Subjects.create(subject);
+    const createdSubject = await Subjects.create({
+      name: subject.name.trim().toLowerCase(),
+    });
     return createdSubject;
   }
   async update(id, subject) {

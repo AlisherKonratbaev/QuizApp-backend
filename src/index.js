@@ -1,10 +1,11 @@
 import express from "express";
 import * as mongoose from "mongoose";
 import * as dotenv from "dotenv";
-import cors from 'cors';
+import cors from "cors";
 import subjectRouter from "./routes/subjectRouter.js";
 import questionRouter from "./routes/questionRouter.js";
 import examRouter from "./routes/examRouter.js";
+import authRouter from "./routes/authRouter.js";
 dotenv.config();
 
 const app = express();
@@ -17,17 +18,18 @@ app.get("/", (req, res) => res.send("Hello World!"));
 
 app.use(subjectRouter);
 app.use(questionRouter);
-app.use(examRouter)
+app.use(examRouter);
+app.use(authRouter);
 
 const start = async () => {
   try {
+    await mongoose.set("strictQuery", false);
     await mongoose.connect(apiUrl, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    app.listen(port, () =>
-      console.log(`сервер запушен на порту ${port}!`)
-    );
+    
+    app.listen(port, () => console.log(`сервер запушен на порту ${port}!`));
   } catch (err) {
     console.log(err);
   }

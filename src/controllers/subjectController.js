@@ -24,6 +24,7 @@ class SubjectController {
     }
   }
   async createSubject(req, res) {
+    
     try {
       const createdSubject = await subjectService.create({
         name: req.body.name,
